@@ -1,0 +1,6 @@
+framework module Pods_LobbyTest {
+  umbrella header "Pods-LobbyTest-umbrella.h"
+
+  export *
+  module * { export * }
+}

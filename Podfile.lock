@@ -1,0 +1,21 @@
+PODS:
+  - PeerKit (3.0.0)
+
+DEPENDENCIES:
+  - PeerKit (from `https://bitbucket.org/Keatonharward/peerkit.git`)
+
+EXTERNAL SOURCES:
+  PeerKit:
+    :git: https://bitbucket.org/Keatonharward/peerkit.git
+
+CHECKOUT OPTIONS:
+  PeerKit:
+    :commit: 42227089a10eb62222317a1d7dbded54459bbde5
+    :git: https://bitbucket.org/Keatonharward/peerkit.git
+
+SPEC CHECKSUMS:
+  PeerKit: e0146d6438e0bc0888f3cb1aa0af474ec053efc5
+
+PODFILE CHECKSUM: 532616703387263ef51a7935951d2590f29e7e3a
+
+COCOAPODS: 1.2.1
