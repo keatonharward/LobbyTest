@@ -47,12 +47,15 @@ extension HostDataSource: UITableViewDataSource {
 
 extension HostDataSource: LocalPeerDiscoveryProtocol {
     func discoveredPeerIsNew(peer: MCPeerID, sessionInfo: [String : String]?) -> Bool {
-        var peerIsNew = false
-        return peers.contains { existingPeer in
-            if existingPeer != peer {
-                return true
-            }
-            return false
+        let contains = peers.contains { existingPeer in
+            existingPeer == peer
         }
+        if !contains {
+            LocalPeerManager.shared.sessionPeers?.append(peer)
+            peers.append(peer)
+            sessionData.append(sessionInfo)
+        }
+        
+        return !contains
     }
 }

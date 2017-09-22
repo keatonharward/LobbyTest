@@ -11,13 +11,13 @@ import MultipeerConnectivity
 import PeerKit
 
 class SearchDataSource: NSObject {
-    var currentPeerIDs: [MCPeerID?]
-    var sessionData: [[String:String]?]
+    var currentPeerIDs: [MCPeerID?]  = []
+    var sessionData: [[String:String]?]  = []
+    var username: String?
     
     override init() {
-        currentPeerIDs = []
-        sessionData = []
         super.init()
+        username = PeerKit.myName
         LocalPeerManager.shared.discoveryDelegate = self
     }
 }
@@ -54,22 +54,25 @@ extension SearchDataSource: UITableViewDataSource {
 extension SearchDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let host = currentPeerIDs[indexPath.row] {
-            LocalPeerManager.shared.connectTo(host: host, withName: UIDevice.current.name, browserPosition: indexPath.row)
+            LocalPeerManager.shared.sessionHost = host
+            if let sessionInfo = sessionData[indexPath.row], let sessionID = sessionInfo["sessionID"] {
+                
+                    LocalPeerManager.shared.sessionID = sessionID
+                    LocalPeerManager.shared.connectTo(host: host, withName: username!, browserPosition: indexPath.row)
+                
+            }
         }
     }
 }
 
 extension SearchDataSource: LocalPeerDiscoveryProtocol {
     func discoveredPeerIsNew(peer: MCPeerID, sessionInfo: [String : String]?) -> Bool {
-        let alreadyHavePeer = currentPeerIDs.contains(where: {$0?.displayName == peer.displayName})
-        var peerIsNew = false
-        if !alreadyHavePeer {
+        let contains = currentPeerIDs.contains(where: {$0?.displayName == peer.displayName})
+        if !contains {
             currentPeerIDs.append(peer)
             sessionData.append(sessionInfo)
-            peerIsNew = true
         }
-        
-        return peerIsNew
+        return !contains
     }
 }
 

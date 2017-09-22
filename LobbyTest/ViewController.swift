@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import PeerKit
 
 class ViewController: UIViewController {
     var dataSource: UITableViewDataSource?
+    var username: String?
+    var game = "Poker"
     
     @IBOutlet weak var peerList: UITableView!
+    @IBOutlet weak var hostLabel: UILabel!
     
     override func viewDidLoad() {
+        PeerKit.myName = UIDevice.current.name
+        username = PeerKit.myName
         peerList.dataSource = dataSource
         peerList.delegate = self
         LocalPeerManager.shared.delegate = self
@@ -55,11 +61,14 @@ extension ViewController: LocalPeerProtocol {
             if !(self.dataSource is HostDataSource) {
                 dataSource = HostDataSource()
                 peerList.dataSource = dataSource
-                LocalPeerManager.shared.hostSession(username: "Name", game: "Game")
+                LocalPeerManager.shared.hostSession(username: username!, game: game)
                 peerList.delegate = self
             }
         default: break
         }
+        if LocalPeerManager.shared.userIsHost {
+            hostLabel.text = "ME!"
+        } else {hostLabel.text = LocalPeerManager.shared.sessionHost?.displayName}
         peerList.reloadData()
     }
 }

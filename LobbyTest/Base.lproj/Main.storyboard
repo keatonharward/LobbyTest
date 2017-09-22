@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nMy-Rv-nRq">
-                                <rect key="frame" x="16" y="226" width="343" height="421"/>
+                                <rect key="frame" x="16" y="294" width="343" height="353"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="cSD-xP-k8R" detailTextLabel="ycT-ao-Xpd" style="IBUITableViewCellStyleValue1" id="jUZ-oA-TIv">
@@ -73,14 +73,22 @@
                                     <action selector="listButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R7R-ym-WFU"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Host Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3nc-9H-ijC">
+                                <rect key="frame" x="146.5" y="227" width="82.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nMy-Rv-nRq" secondAttribute="bottom" constant="20" id="EKC-ip-A10"/>
                             <constraint firstItem="2zL-xA-QLa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="F3P-Kq-W0C"/>
+                            <constraint firstItem="3nc-9H-ijC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gk2-au-QHD"/>
+                            <constraint firstItem="nMy-Rv-nRq" firstAttribute="top" secondItem="3nc-9H-ijC" secondAttribute="bottom" constant="46" id="Nus-CP-YZz"/>
+                            <constraint firstItem="3nc-9H-ijC" firstAttribute="top" secondItem="2zL-xA-QLa" secondAttribute="bottom" constant="24" id="VuC-sB-BMQ"/>
                             <constraint firstItem="s1Q-sd-O9g" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yw8-9L-fbK"/>
                             <constraint firstItem="nMy-Rv-nRq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="b8H-uB-29h"/>
-                            <constraint firstItem="nMy-Rv-nRq" firstAttribute="top" secondItem="2zL-xA-QLa" secondAttribute="bottom" constant="23" id="hQL-AT-SCb"/>
                             <constraint firstItem="nMy-Rv-nRq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="jPt-Kz-wc9"/>
                             <constraint firstItem="s1Q-sd-O9g" firstAttribute="top" secondItem="G3T-J7-pLb" secondAttribute="bottom" constant="38" id="jTs-ky-AkN"/>
                             <constraint firstItem="G3T-J7-pLb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wDo-La-3LF"/>
@@ -89,6 +97,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="hostLabel" destination="3nc-9H-ijC" id="R50-5X-O23"/>
                         <outlet property="peerList" destination="nMy-Rv-nRq" id="HtV-2d-bBL"/>
                     </connections>
                 </viewController>

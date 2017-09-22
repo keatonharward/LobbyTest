@@ -31,9 +31,9 @@ public var eventBlocks = [String: ObjectBlock]()
 
 #if os(iOS)
     import UIKit
-    public let myName = UIDevice.current.name
+    public var myName: String = "UIDevice.current.name"
 #else
-    public let myName = Host.current().localizedName ?? ""
+    public var myName = Host.current().localizedName ?? ""
 #endif
 
 public var transceiver = Transceiver(displayName: myName)

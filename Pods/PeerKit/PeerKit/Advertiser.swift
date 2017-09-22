@@ -9,9 +9,14 @@
 import Foundation
 import MultipeerConnectivity
 
+public protocol advertiserDelegate {
+    func requestToJoin(fromUser user: MCPeerID)
+}
+
 class Advertiser: NSObject, MCNearbyServiceAdvertiserDelegate {
     
     let mcSession: MCSession
+    var delegate: advertiserDelegate?
     
     init(mcSession: MCSession) {
         self.mcSession = mcSession
@@ -33,13 +38,9 @@ class Advertiser: NSObject, MCNearbyServiceAdvertiserDelegate {
     
     
     //    @available(iOSApplicationExtension 7.0, *)
-    //    public func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-    //        <#code#>
-    //    }
-    
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        let accept = true
-        invitationHandler(accept, mcSession)
-    }
+        public func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+            let contains = (mcSession.connectedPeers.contains(peerID))
+            invitationHandler(!contains, mcSession)
+        }
 }
 
