@@ -25,6 +25,10 @@ class ViewController: UIViewController {
         LocalPeerManager.shared.delegate = self
     }
     
+    @IBAction func playButtonTapped(_ sender: Any) {
+        LocalPeerManager.shared.sendEvent()
+    }
+    
     @IBAction func hostButtonTapped(_ sender: Any) {
         updatePeers(withDataSource: .host)
     }

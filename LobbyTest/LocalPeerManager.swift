@@ -82,7 +82,8 @@ class LocalPeerManager: NSObject {
         
         PeerKit.onEvent = { peerID, event, object in
             self.updatePeers()
-            if(event == "update peers") {
+            switch event {
+            case "update peers":
                 let peersFromHost = object as! [MCPeerID]
                 self.sessionPeers = PeerKit.session!.connectedPeers
                 if peersFromHost.count > self.sessionPeers!.count {
@@ -94,11 +95,18 @@ class LocalPeerManager: NSObject {
                         self.addNewPeer(withSessionID: self.sessionID)
                     }
                 }
+            case "Play":
+                let received = object as! [MCPeerID]?
+            default: break
             }
         }
     }
     
-    
+    func sendEvent() {
+        let move = sessionPeers as AnyObject
+        
+        PeerKit.sendEvent("Play", object: move, toPeers: PeerKit.session?.connectedPeers)
+    }
     
     
     func hostSession(username: String, game: String) {
